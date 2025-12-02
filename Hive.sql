@@ -39,6 +39,12 @@ AS SELECT * FROM <view_name>;
 CREATE VIEW IF NOT EXISTS <view_name_new> 
 AS SELECT * FROM <view_name>;
 
+SELECT
+header_timestamp,  
+to_date(from_unixtime(CAST(header_timestamp / 1000 AS BIGINT))) AS converted_date, 
+from_unixtime(CAST(header_timestamp / 1000 AS BIGINT)) AS converted_timestamp
+FROM <table_name>
+
 SELECT CAST(report_date AS STRING FORMAT 'YYYY-MM') AS report_date
 
 SELECT date_format(report_date, 'yyyy-MM') AS report_date
